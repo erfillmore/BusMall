@@ -1,0 +1,22 @@
+#image-container {
+display: flex;
+justify-content: center;
+}
+
+img {
+  display:inline-block;
+  margin:5px 20px;
+  padding:5px;
+}
+
+article {
+  border: black;
+      border-width: 1px;
+      border-style: solid;
+      padding: 15px;
+}
+
+h1, p {
+display: flex
+justify-content: center
+}
