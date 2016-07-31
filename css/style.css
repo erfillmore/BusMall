@@ -3,6 +3,10 @@ display: flex;
 justify-content: center;
 }
 
+table, tr, th {
+  border: solid 1px
+}
+
 img {
   display:inline-block;
   margin:5px 20px;

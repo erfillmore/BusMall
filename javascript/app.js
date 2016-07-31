@@ -1,3 +1,15 @@
+//helper function
+
+function toggle_visibility(id) {
+   var e = document.getElementById(id);
+   if(e.style.display == 'block')
+      e.style.display = 'none';
+   else
+      e.style.display = 'block';
+}
+
+//
+
 var randomImage = function(src, name) {
     this.src = src;
     this.points = 0;
@@ -24,8 +36,8 @@ var imageOptions = [
 ]
 
 var pickedImage = [];
-document.getElementById("image-container").addEventListener("click", recordClick)
-
+document.getElementById("image-container").addEventListener("click", recordClick);
+document.getElementById("hide").style.display = "none";
 
 function getImages() {
     pickedImage = [];
@@ -44,8 +56,28 @@ function getImages() {
     }
 }
 
+function createResults() {
+  for (var index = 0; index < imageOptions.length; index++) {
+    var nameColumn = document.createElement("tr");
+    var nameCell = document.createElement("td");
+    nameCell.innerText = imageOptions[index].name;
+    nameColumn.appendChild(nameCell);
+    document.getElementById("images").appendChild(nameColumn);
+    var pointColumn = document.createElement("tr");
+    var pointCell = document.createElement("td");
+    pointCell.innerText = imageOptions[index].points;
+    pointColumn.appendChild(pointCell);
+    document.getElementById("votes").appendChild(pointColumn)
+    }
+    document.getElementById("hide").style.display = "inherit";
+  }
+
 function recordClick(event) {
-  totalClicks++
+    if (totalClicks === 15) {
+      alert("You have done 15 cycle throughs of these images! You may continue voting, or stop, at your leisure.")
+        createResults();
+    }
+    totalClicks++
     var clickedImage = event.target;
     console.log(clickedImage);
     var imageSource = clickedImage.src;
@@ -56,10 +88,6 @@ function recordClick(event) {
         }
     }
 }
-
-window.onload(getImages())
-
-
 
 // ONCE CLICKED, REFRESH -- in that function, you want a "progress bar" - ref to the unused voting results trable
 // Progress +totalClicks+ of 15
