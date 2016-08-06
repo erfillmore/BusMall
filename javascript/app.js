@@ -89,7 +89,14 @@ function recordClick(event) {
     }
 }
 
-// ONCE CLICKED, REFRESH -- in that function, you want a "progress bar" - ref to the unused voting results trable
-// Progress +totalClicks+ of 15
-// take away each sentence after u write it, otherwise infinte
-// a global scope object that exists outside the click event that traces clicks
+function convert(array) {
+  newArr = [];
+  for (var i = 0; i < array.length; i++) {
+    var newObj = {
+      label: array[i].name,
+      y: array[i].points,
+    }
+
+    newArr.push(newObj);
+  }
+}
