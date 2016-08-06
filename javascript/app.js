@@ -37,7 +37,7 @@ var imageOptions = [
 
 var pickedImage = [];
 document.getElementById("image-container").addEventListener("click", recordClick);
-document.getElementById("hide").style.display = "none";
+//document.getElementById("hide").style.display = "none";
 
 function getImages() {
     pickedImage = [];
@@ -56,7 +56,7 @@ function getImages() {
     }
 }
 
-function createResults() {
+/* function createResults() {
   for (var index = 0; index < imageOptions.length; index++) {
     var nameColumn = document.createElement("tr");
     var nameCell = document.createElement("td");
@@ -70,12 +70,13 @@ function createResults() {
     document.getElementById("votes").appendChild(pointColumn)
     }
     document.getElementById("hide").style.display = "inherit";
-  }
+  } */
 
-function recordClick(event) {
+function recordClick(event, newArr) {
     if (totalClicks === 15) {
-      alert("You have done 15 cycle throughs of these images! You may continue voting, or stop, at your leisure.")
-        createResults();
+      alert("You have done 15 cycle throughs of these images! You may continue voting, or stop, at your leisure.");
+        convert(imageOptions);
+        drawChart(newArr);
     }
     totalClicks++
     var clickedImage = event.target;
@@ -89,14 +90,14 @@ function recordClick(event) {
     }
 }
 
+var newArr = [];
+
 function convert(array) {
-  newArr = [];
   for (var i = 0; i < array.length; i++) {
     var newObj = {
       label: array[i].name,
       y: array[i].points,
     }
-
     newArr.push(newObj);
   }
 }
